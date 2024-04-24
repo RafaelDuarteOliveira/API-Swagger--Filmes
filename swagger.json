@@ -1,0 +1,141 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "FAELFLIX",
+      "version": "1.0.0",
+      "description": "API para cadastro de filmes e series"
+    },
+    "paths": {
+      "/api/imagens": {
+        "get": {
+          "summary": "Obter a lista de filmes",
+          "responses": {
+            "200": {
+              "description": "Lista de filmes retornada com sucesso"
+            }
+          }
+        },
+        "post": {
+          "summary": "Criar um novo filme",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/images"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Filme criado com sucesso"
+            },
+            "400": {
+              "description": "Dados inválidos fornecidos"
+            }
+          }
+        }
+      },
+      "/images/{id}": {
+        "get": {
+          "summary": "Obter informações de um filme pelo ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Informações do filme retornadas com sucesso"
+            },
+            "404": {
+              "description": "Filme não encontrado"
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualizar informações de um filme pelo ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/images"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Informações do filme atualizadas com sucesso"
+            },
+            "404": {
+              "description": "Filme não encontrado"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Excluir um filme pelo ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Filme excluído com sucesso"
+            },
+            "404": {
+              "description": "Filme não encontrado"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "imagens": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "titulo": {
+              "type": "string",
+              "format": "titulo"
+            },
+            
+            "descricao": {
+                "type": "string",
+                "format": "descricao"
+            },
+            "url": {
+            "type": "string",
+            "format": "url"
+            }
+          }
+        }
+      }
+    }
+  }
